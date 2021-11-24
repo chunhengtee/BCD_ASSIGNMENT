@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="BCD_Assignment" />
+        <module name="BCD_ASSIGNMENT" />
       </profile>
     </annotationProcessing>
   </component>
