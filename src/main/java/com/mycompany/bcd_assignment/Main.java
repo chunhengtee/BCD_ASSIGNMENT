@@ -5,6 +5,7 @@ public class Main {
         //System.out.println("test");
         //new CustomerLogin();
         //new AdminLogin();
-        new AdminHomePage();
+        //new AdminHomePage();
+        new OrderList();
     }
 }
