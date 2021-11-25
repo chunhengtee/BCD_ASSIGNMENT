@@ -3,18 +3,15 @@ package com.mycompany.bcd_assignment;
 import javax.swing.*;
 import java.awt.*;
 
-public class CustomerLogin extends JFrame{
-    private JLabel userNameLabel;
-    private JTextField userText;
-    private JPanel panel1;
-    private JPasswordField password;
-    private JButton loginButton;
-    private JLabel stillDonTHaveLabel;
-    private JButton registerButton;
+public class AdminLogin extends JFrame{
     private JFrame frame;
+    private JTextField textField1;
+    private JTextField textField2;
+    private JButton confirmButton;
+    private JPanel panel1;
 
-    public CustomerLogin(){
-        frame = new JFrame("Customer Login");
+    public AdminLogin(){
+        frame = new JFrame("Admin Login");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(300,400));
         frame.setResizable(false);
