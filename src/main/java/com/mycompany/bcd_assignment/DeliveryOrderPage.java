@@ -15,7 +15,7 @@ public class DeliveryOrderPage extends JFrame {
     private JFrame frame;
 
     public DeliveryOrderPage(){
-        frame = new JFrame("OrderList");
+        frame = new JFrame("DeliveryOrderPage");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(300,400));
         frame.setResizable(false);

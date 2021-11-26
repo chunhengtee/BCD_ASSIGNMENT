@@ -10,5 +10,6 @@ public class Main {
         //new OrderDetails();
         //new CustomerPage();
         new DeliveryOrderPage();
+        new TrackingItemPage1();
     }
 }
