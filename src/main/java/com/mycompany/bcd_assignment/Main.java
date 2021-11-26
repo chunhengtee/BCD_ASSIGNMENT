@@ -9,7 +9,8 @@ public class Main {
         //new OrderList();
         //new OrderDetails();
         //new CustomerPage();
-        new DeliveryOrderPage();
-        new TrackingItemPage1();
+        //new DeliveryOrderPage();
+        //new TrackingItemPage1();
+        new TrackingItemPage2();
     }
 }
