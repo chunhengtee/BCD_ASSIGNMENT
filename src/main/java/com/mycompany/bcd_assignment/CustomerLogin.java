@@ -60,7 +60,8 @@ public class CustomerLogin extends JFrame implements ActionListener{
             if (user.equalsIgnoreCase( "admin") && pwd.equalsIgnoreCase("12345")) {
                 JOptionPane.showMessageDialog(this, "Login Successful");
                 this.setVisible(false);
-                new AdminLogin().setVisible(false);
+                new AdminHomePage();
+
 
 
             } else {
