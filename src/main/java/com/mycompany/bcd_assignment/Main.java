@@ -11,6 +11,7 @@ public class Main {
         //new CustomerPage();
         //new DeliveryOrderPage();
         //new TrackingItemPage1();
-        new TrackingItemPage2();
+        //new TrackingItemPage2();
+        new Register();
     }
 }
