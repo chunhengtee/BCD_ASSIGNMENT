@@ -11,8 +11,8 @@ public class CustomerLogin extends JFrame{
     private JButton loginButton;
     private JLabel stillDonTHaveLabel;
     private JButton registerButton;
-    private JRadioButton radioButton1;
-    private JRadioButton radioButton2;
+    private JRadioButton customerRadioButton;
+    private JRadioButton adminRadioButton;
     private JFrame frame;
 
     public CustomerLogin(){
