@@ -7,6 +7,7 @@ public class Main {
         //new AdminLogin();
         //new AdminHomePage();
         //new OrderList();
-        new OrderDetails();
+        //new OrderDetails();
+        new CustomerPage();
     }
 }
