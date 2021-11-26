@@ -3,16 +3,19 @@ package com.mycompany.bcd_assignment;
 import javax.swing.*;
 import java.awt.*;
 
-public class OrderDetails extends JFrame {
+public class DeliveryOrderPage extends JFrame {
     private JTextField textField1;
     private JTextField textField2;
-    private JButton button1;
+    private JTextField textField3;
+    private JTextField textField4;
+    private JComboBox comboBox1;
+    private JComboBox comboBox2;
+    private JButton confirmOrderButton;
     private JPanel panel1;
-
     private JFrame frame;
 
-    public OrderDetails(){
-        frame = new JFrame("OrderDetails");
+    public DeliveryOrderPage(){
+        frame = new JFrame("DeliveryOrderPage");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(300,400));
         frame.setResizable(false);
