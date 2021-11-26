@@ -11,12 +11,14 @@ public class CustomerLogin extends JFrame{
     private JButton loginButton;
     private JLabel stillDonTHaveLabel;
     private JButton registerButton;
+    private JRadioButton radioButton1;
+    private JRadioButton radioButton2;
     private JFrame frame;
 
     public CustomerLogin(){
         frame = new JFrame("Customer Login");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(300,400));
+        frame.setPreferredSize(new Dimension(350,400));
         frame.setResizable(false);
 
         // panel
