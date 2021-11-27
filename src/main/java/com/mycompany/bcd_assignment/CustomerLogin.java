@@ -8,14 +8,17 @@ import java.awt.event.ActionListener;
 
 public class CustomerLogin extends JFrame implements ActionListener{
     private JLabel userNameLabel;
-    private JTextField userText;
-    private JPanel panel1;
-    private JPasswordField password;
-    private JButton loginButton;
     private JLabel stillDonTHaveLabel;
+
+    private JTextField userText;
+    private JPasswordField password;
+
+    private JButton loginButton;
     private JButton registerButton;
     private JRadioButton customerRadioButton;
     private JRadioButton adminRadioButton;
+
+    private JPanel panel1;
     private JFrame frame;
 
     public CustomerLogin(){
@@ -45,7 +48,14 @@ public class CustomerLogin extends JFrame implements ActionListener{
         });
 
 
-
+        registerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Register register = new Register();
+                register.setVisible(true);
+                frame.setVisible(false);
+            }
+        });
     }
     public void redirectToPage() {
         String user;
@@ -74,6 +84,8 @@ public class CustomerLogin extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        // File file = new File (data.csv);
 
     }
 }

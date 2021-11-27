@@ -10,7 +10,9 @@ public class CustomerPage extends JFrame{
     private JButton logOutButton;
     private JFrame frame;
 
-    public CustomerPage(){
+    public CustomerPage()throws HeadlessException{
+
+        //configuration of page
         frame = new JFrame("Customer Page");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(300,400));
@@ -21,7 +23,7 @@ public class CustomerPage extends JFrame{
 
         frame.pack();
         frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+        frame.setVisible(false);
 
     }
 }
