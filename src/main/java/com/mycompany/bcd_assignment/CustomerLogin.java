@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Scanner;
 
 
 public class CustomerLogin extends JFrame implements ActionListener{
@@ -63,16 +64,16 @@ public class CustomerLogin extends JFrame implements ActionListener{
         user= userText.getText();
         pwd= password.getText();
         if (customerRadioButton.isSelected()) {
+            // read the register.txt
+            Scanner s = new Scanner()
 
         }
-        if (adminRadioButton.isSelected()) {
+        if (adminRadioButton.isSelected()) {   //login for admin
 
             if (user.equalsIgnoreCase( "admin") && pwd.equalsIgnoreCase("12345")) {
                 JOptionPane.showMessageDialog(this, "Login Successful");
-                //this.setVisible(false);
+                frame.setVisible(false);
                 new AdminHomePage();
-
-
 
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid Username or Password");
