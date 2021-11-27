@@ -88,7 +88,7 @@ public class Register extends JFrame implements ActionListener {
 
         BufferedWriter writer = new BufferedWriter(new FileWriter("Register.txt",true));
 
-        writer.write(name + "||" + "||"+ password + "||" + phone + "||"+ email+address + "\n");
+        writer.write(name + "||"+ password + "||" + phone + "||"+ email+ "||" + address + "\n");
         writer.close();
 
     }

@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 
@@ -42,7 +44,11 @@ public class CustomerLogin extends JFrame implements ActionListener{
                 if (userText.getText().equals("") || password.getPassword().length == 0) {
                     JOptionPane.showMessageDialog(this, "user name or password cannot be empty", "Invalid Input", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    redirectToPage();
+                    try {
+                        redirectToPage();
+                    } catch (FileNotFoundException ex) {
+                        ex.printStackTrace();
+                    }
                 }
             });
 
@@ -58,19 +64,44 @@ public class CustomerLogin extends JFrame implements ActionListener{
             }
         });
     }
-    public void redirectToPage() {
+    public void redirectToPage() throws FileNotFoundException {
         String user;
         String pwd;
-        user= userText.getText();
-        pwd= password.getText();
-        if (customerRadioButton.isSelected()) {
+        user = userText.getText();
+        pwd = new String(password.getPassword());
+        if (customerRadioButton.isSelected()) {   //login for customer
             // read the register.txt
-            Scanner s = new Scanner()
+            try {
+                File myObj = new File("Register.txt");
+                Scanner s = new Scanner(myObj);
+
+                while (s.hasNextLine()) {
+
+                    String[] data = s.nextLine().split("\\|\\|");
+                    if (user.equalsIgnoreCase(data[0]) && pwd.equalsIgnoreCase(data[1])) {
+                        JOptionPane.showMessageDialog(this, "Login Successful");
+                        //CustomerPage customerPage = new CustomerPage();
+                        //customerPage.setVisible(true);
+                        //new CustomerPage();
+                        new AdminHomePage();
+                        frame.setVisible(false);
+
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Invalid Username or Password");
+                    }
+                }
+                s.close();
+            } catch (FileNotFoundException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+
+            }
+
 
         }
         if (adminRadioButton.isSelected()) {   //login for admin
 
-            if (user.equalsIgnoreCase( "admin") && pwd.equalsIgnoreCase("12345")) {
+            if (user.equalsIgnoreCase("admin") && pwd.equalsIgnoreCase("12345")) {
                 JOptionPane.showMessageDialog(this, "Login Successful");
                 frame.setVisible(false);
                 new AdminHomePage();
@@ -80,13 +111,14 @@ public class CustomerLogin extends JFrame implements ActionListener{
             }
 
         }
+        // else
+        // user didn't choose radio button
+        // please choose user type!
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        // File file = new File (data.csv);
 
     }
 }
