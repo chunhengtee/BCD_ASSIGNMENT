@@ -57,15 +57,20 @@ public class Register extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(frame,"The input cannot be blank !", "Info", JOptionPane.ERROR_MESSAGE);
                 }
                 else {
-                    Customer customer = new Customer ();
+                    //Customer customer = new Customer ();
+                    try {
+                        writeToFile();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                 }
 
             }
         });
     }
-    //public String getPassword(){
-        //return getPassword();
-    //}
+    public String getPassword(){
+        return getPassword();
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -74,13 +79,17 @@ public class Register extends JFrame implements ActionListener {
     //void createAccount(ActionEvent)throws IOException{
         //writeToFile();
     //}
-    //public void writeToFile()  throws IOException{
-        //String name = getName();
-        //Integer password = getPassword();
-        //BufferedWriter writer = new BufferedWriter(new FileWriter(file,true));
+    public void writeToFile() throws IOException{
+        String name = this.name.getText();
+        String password = this.password.getText();
+        String phone = this.phone.getText();
+        String email = this.email.getText();
+        String address = this.address.getText();
 
-        //writer.write(name + "\n");
-        //writer.close();
+        BufferedWriter writer = new BufferedWriter(new FileWriter("Register.txt",true));
+
+        writer.write(name + "||" + "||"+ password + "||" + phone + "||"+ email+address + "\n");
+        writer.close();
 
     }
 }
