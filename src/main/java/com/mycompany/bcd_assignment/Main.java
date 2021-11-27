@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         //demo();
         //System.out.println("test");
-        new CustomerLogin();
+        //new CustomerLogin();
         //new AdminLogin();
         //new AdminHomePage();
         //new OrderList();
@@ -16,11 +16,7 @@ public class Main {
         //new DeliveryOrderPage();
         //new TrackingItemPage1();
         //new TrackingItemPage2();
-        //new Register();
+        new Register();
     }
-    /*static void demo(){
-        String s1 = "hi,please enter your username and password:";
-        System.out.println("string = " + s1);
-        System.out.println("Hash value" + s1.hashCode());
-    }*/
+
 }
