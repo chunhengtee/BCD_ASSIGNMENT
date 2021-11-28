@@ -1,7 +1,12 @@
 package com.mycompany.bcd_assignment;
 
 import bcd.Hasher;
+import keycreator.KeyAccess;
 import model.Customer;
+import keycreator.KeyPairMaker;
+import keycreator.KeyAccess;
+
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Base64;
 
 public class Register extends JFrame implements ActionListener {
     // component
@@ -81,6 +87,8 @@ public class Register extends JFrame implements ActionListener {
         String name = this.name.getText();
         String password = this.password.getText();
         String hashPass = Hasher.hash(password, "SHA-256");
+        String hashName = Hasher.hash(name, "SHA-256");
+
         String phone = this.phone.getText();
         String email = this.email.getText();
         String address = this.address.getText();
@@ -89,6 +97,15 @@ public class Register extends JFrame implements ActionListener {
 
         writer.write(name + "|"+ hashPass + "|" + phone + "|"+ email+ "|" + address + "\n");
         writer.close();
+
+        KeyPairMaker.create(hashName);
+        try {
+            System.out.println(Base64.getEncoder().encodeToString( KeyAccess.getPublicKey(hashName).getEncoded() ));
+            System.out.println(Base64.getEncoder().encodeToString( KeyAccess.getPrivateKey(hashName).getEncoded() ));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 }

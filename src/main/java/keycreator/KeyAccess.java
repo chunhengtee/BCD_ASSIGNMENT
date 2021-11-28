@@ -19,14 +19,14 @@ public class KeyAccess {
 	 * read the key
 	 */
 	
-	public static PublicKey getPublicKey() throws Exception{
-		byte[] keyBytes = Files.readAllBytes( Paths.get( Configuration.PUBLICKEY_FILE ) );
+	public static PublicKey getPublicKey(String hashName) throws Exception{
+		byte[] keyBytes = Files.readAllBytes( Paths.get( Configuration.PUBLICKEY_FILE+hashName ) );
 		X509EncodedKeySpec spec = new X509EncodedKeySpec( keyBytes );
 		return KeyFactory.getInstance( Configuration.PUBLICKEY_ALGORITHM ).generatePublic(spec);
 	}
 	
-	public static PrivateKey getPrivateKey() throws Exception{
-		byte[] keyBytes = Files.readAllBytes(Paths.get( Configuration.PRIVATEKEY_FILE ));
+	public static PrivateKey getPrivateKey(String hashName) throws Exception{
+		byte[] keyBytes = Files.readAllBytes(Paths.get( Configuration.PRIVATEKEY_FILE+hashName ));
 		PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec( keyBytes );
 		return KeyFactory.getInstance(Configuration.PUBLICKEY_ALGORITHM).generatePrivate(spec);
 	}

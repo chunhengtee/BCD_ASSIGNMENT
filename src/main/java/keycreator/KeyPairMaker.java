@@ -33,7 +33,7 @@ public class KeyPairMaker {
 	/**
 	 * create()
 	 */
-	public static void create() {
+	public static void create(String hashName) {
 		try {
 			//KeyPairMaker object
 			KeyPairMaker maker = new KeyPairMaker();
@@ -51,8 +51,8 @@ public class KeyPairMaker {
 					Base64.getEncoder().encodeToString( prikey.getEncoded() ) );
 			
 			//keystore
-			put( pubkey.getEncoded(), Configuration.PUBLICKEY_FILE);
-			put( prikey.getEncoded(), Configuration.PRIVATEKEY_FILE );
+			put( pubkey.getEncoded(), Configuration.PUBLICKEY_FILE+hashName);
+			put( prikey.getEncoded(), Configuration.PRIVATEKEY_FILE+hashName );
 			
 		} catch (Exception e) {
 			e.printStackTrace();

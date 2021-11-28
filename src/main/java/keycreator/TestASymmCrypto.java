@@ -19,14 +19,14 @@ public class TestASymmCrypto {
 		String data = "teabreak! encrypt it...";
 		System.out.println( "Data: "+ data );
 		
-		String encrypted = crypto.encrypt(data, KeyAccess.getPublicKey());
-		System.out.println( "Encrypted: "+encrypted );
+		//String encrypted = crypto.encrypt(data, KeyAccess.getPublicKey());
+		//System.out.println( "Encrypted: "+encrypted );
 		
 		System.out.println();
 		TimeUnit.SECONDS.sleep(3);
 		
-		String decrypted = crypto.decrypt(encrypted, KeyAccess.getPrivateKey());
-		System.out.println( "Recovered: "+decrypted );
+		//String decrypted = crypto.decrypt(encrypted, KeyAccess.getPrivateKey());
+		//System.out.println( "Recovered: "+decrypted );
 
 	}
 
