@@ -1,5 +1,7 @@
 package com.mycompany.bcd_assignment;
 
+import bcd.Block;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -40,6 +42,9 @@ public class CustomerPage extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 DeliveryOrderPage deliveryOrderPage = new DeliveryOrderPage();
                 deliveryOrderPage.setVisible(true);
+
+
+
                 frame.setVisible(false);
 
             }

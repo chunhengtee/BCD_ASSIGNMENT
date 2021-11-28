@@ -5,6 +5,8 @@
  */
 package bcd;
 
+import keycreator.KeyAccess;
+
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.Signature;
@@ -34,8 +36,9 @@ public class MySignature {
 	}
 	//END: DEMO
 	
-	public MySignature() {
+	public MySignature(String name) {
 		try {
+			keyPair = new KeyPair(KeyAccess.getPublicKey(name), KeyAccess.getPrivateKey(name));
 			signature = Signature.getInstance( "SHA256WithRSA" );
 		} catch (Exception e) {
 			e.printStackTrace();

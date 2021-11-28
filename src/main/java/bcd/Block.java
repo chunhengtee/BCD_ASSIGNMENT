@@ -31,7 +31,7 @@ public class Block implements Serializable{
 	}
 
 
-	public Block(int index, String previousHash, long orderID, String username, Transaction tranx, String merkleRootStr) {
+	public Block(int index, String previousHash, String orderID, String username, Transaction tranx, String merkleRootStr) {
 		this.header = new Header();
 		this.header.index = index;
 		this.header.previousHash = previousHash;
@@ -60,7 +60,7 @@ public class Block implements Serializable{
 		private String previousHash;
 		private long timeStamp;
 		private String merkleRoot;
-		private long orderID;
+		private String orderID;
 		private String username;
 		
 		//getset methods

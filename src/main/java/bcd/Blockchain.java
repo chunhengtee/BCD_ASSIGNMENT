@@ -5,11 +5,7 @@
  */
 package bcd;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -23,7 +19,7 @@ public class Blockchain {
 	private static final String CHAIN_FILE 		= 	"master/chain.bin";
 
 	//data-structure
-	private static final LinkedList<Block> DB 	= 	new LinkedList<>();
+	private static LinkedList<Block> DB 	= 	new LinkedList<>();
 	
 	//ledger-filename
 	private static final String LEDGER_FILE		=	"ledger.txt";
@@ -53,19 +49,24 @@ public class Blockchain {
 	
 	//get() : retrieve the chain from the master-file
 	public static LinkedList<Block> get(){
-		/**
-		 * Helper classes for reading the object (LinkedList) from the binary-file
-		 * 	1) FileInputStream; 2) ObjectInputStream
-		 */
-		try(
-			FileInputStream fis = new FileInputStream( CHAIN_FILE );
-			ObjectInputStream in = new ObjectInputStream( fis );
-		) {
-			return (LinkedList<Block>) in.readObject();
-		} catch (IOException | ClassNotFoundException e  ) {
-			e.printStackTrace();
-			return null;
-		}
+		FileInputStream fis = null;
+		ObjectInputStream in= null;
+		try {
+			fis = new FileInputStream(CHAIN_FILE);
+			in = new ObjectInputStream(fis);
+
+			DB = (LinkedList<Block>) in.readObject();
+			fis.close();
+			in.close();
+		} catch (FileNotFoundException e) {
+			if (DB.size() == 0) {
+				Block genesis = new Block("0");
+				Blockchain.nextBlock(genesis);
+				Blockchain.distribute();
+			}
+		}catch (Exception ex ){}
+		return DB;
+
 	}
 	
 	//distribute() : printout the ledger records (demo)
@@ -83,6 +84,7 @@ public class Blockchain {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 	}
 	
 }

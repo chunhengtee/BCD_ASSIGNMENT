@@ -84,6 +84,8 @@ public class CustomerLogin extends JFrame implements ActionListener{
                         JOptionPane.showMessageDialog(this, "Login Successful");
                         CustomerPage customerPage = new CustomerPage();
                         customerPage.setVisible(true);
+
+
                         frame.setVisible(false);
                         isFound=true;
                         break;

@@ -4,6 +4,7 @@ import bcd.Hasher;
 
 public class Main {
     //public static
+
     public static void main(String[] args) {
         //demo();
         //System.out.println("test");
@@ -18,5 +19,7 @@ public class Main {
         //new TrackingItemPage2();
         //new Register();
     }
+    public static CustomerLogin currentCustomer = new CustomerLogin();
+
 
 }
