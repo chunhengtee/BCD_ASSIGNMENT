@@ -1,5 +1,6 @@
 package com.mycompany.bcd_assignment;
 
+import bcd.Hasher;
 import model.Customer;
 
 import javax.swing.*;
@@ -29,8 +30,6 @@ public class Register extends JFrame implements ActionListener {
         frame.setPreferredSize(new Dimension(450,400));
         frame.setResizable(false);
 
-        //frame.add(name);
-        //frame.add(password);
 
         frame.add(panel1);
 
@@ -38,7 +37,6 @@ public class Register extends JFrame implements ActionListener {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        //File file = new File("data.csv");
 
         backToLoginButton.addActionListener(new ActionListener() {  //back to login page button
             @Override
@@ -57,12 +55,15 @@ public class Register extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(frame,"The input cannot be blank !", "Info", JOptionPane.ERROR_MESSAGE);
                 }
                 else {
-                    //Customer customer = new Customer ();
+
                     try {
                         writeToFile();
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
+                    CustomerLogin customerLogin = new CustomerLogin();
+                    customerLogin.setVisible(true);
+                    frame.setVisible(false);
                 }
 
             }
@@ -76,19 +77,17 @@ public class Register extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         //file
     }
-    //void createAccount(ActionEvent)throws IOException{
-        //writeToFile();
-    //}
     public void writeToFile() throws IOException{
         String name = this.name.getText();
         String password = this.password.getText();
+        String hashPass = Hasher.hash(password, "SHA-256");
         String phone = this.phone.getText();
         String email = this.email.getText();
         String address = this.address.getText();
 
         BufferedWriter writer = new BufferedWriter(new FileWriter("Register.txt",true));
 
-        writer.write(name + "||"+ password + "||" + phone + "||"+ email+ "||" + address + "\n");
+        writer.write(name + "|"+ hashPass + "|" + phone + "|"+ email+ "|" + address + "\n");
         writer.close();
 
     }

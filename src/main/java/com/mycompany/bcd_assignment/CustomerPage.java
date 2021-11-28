@@ -2,6 +2,8 @@ package com.mycompany.bcd_assignment;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class CustomerPage extends JFrame{
     private JPanel panel1;
@@ -10,7 +12,7 @@ public class CustomerPage extends JFrame{
     private JButton logOutButton;
     private JFrame frame;
 
-    public CustomerPage()throws HeadlessException{
+    public CustomerPage(){
 
         //configuration of page
         frame = new JFrame("Customer Page");
@@ -23,7 +25,15 @@ public class CustomerPage extends JFrame{
 
         frame.pack();
         frame.setLocationRelativeTo(null);
-        frame.setVisible(false);
+        frame.setVisible(true);
 
+        logOutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CustomerLogin customerLogin = new CustomerLogin();
+                customerLogin.setVisible(true);
+                frame.setVisible(false);
+            }
+        });
     }
 }

@@ -24,7 +24,7 @@ public class Hasher {
 			MessageDigest md = MessageDigest.getInstance(algorithm);
 			md.update( data.getBytes() );
 			//add salt = add security value (secret of the security solution )
-			md.update( Salt.get( 16 ) ); //salt is a random value!
+			//md.update( Salt.get( 16 ) ); //salt is a random value!
 			//digest
 			byte[] hashBytes = md.digest();
 

@@ -1,5 +1,7 @@
 package com.mycompany.bcd_assignment;
 
+import bcd.Hasher;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -65,31 +67,33 @@ public class CustomerLogin extends JFrame implements ActionListener{
         });
     }
     public void redirectToPage() throws FileNotFoundException {
-        String user;
-        String pwd;
-        user = userText.getText();
-        pwd = new String(password.getPassword());
+        String user = userText.getText();
+        String pwd = new String(password.getPassword());
+        String hashPwd = Hasher.hash(pwd,"SHA-256");
         if (customerRadioButton.isSelected()) {   //login for customer
             // read the register.txt
             try {
                 File myObj = new File("Register.txt");
                 Scanner s = new Scanner(myObj);
 
+                boolean isFound = false;
                 while (s.hasNextLine()) {
 
-                    String[] data = s.nextLine().split("\\|\\|");
-                    if (user.equalsIgnoreCase(data[0]) && pwd.equalsIgnoreCase(data[1])) {
+                    String[] data = s.nextLine().split("\\|");
+                    if (user.equalsIgnoreCase(data[0]) && hashPwd.equalsIgnoreCase(data[1])) {
                         JOptionPane.showMessageDialog(this, "Login Successful");
-                        //CustomerPage customerPage = new CustomerPage();
-                        //customerPage.setVisible(true);
-                        //new CustomerPage();
-                        new AdminHomePage();
+                        CustomerPage customerPage = new CustomerPage();
+                        customerPage.setVisible(true);
                         frame.setVisible(false);
+                        isFound=true;
+                        break;
 
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Invalid Username or Password");
                     }
                 }
+                if(!isFound){
+                    JOptionPane.showMessageDialog(this, "Invalid Username or Password");
+                }
+
                 s.close();
             } catch (FileNotFoundException e) {
                 System.out.println("An error occurred.");
