@@ -2,11 +2,14 @@ package com.mycompany.bcd_assignment;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class TrackingItemPage1 extends JFrame{
     private JTextField textField1;
     private JButton confirmButton;
     private JPanel panel1;
+    private JButton backButton;
     private JFrame frame;
 
     public TrackingItemPage1(){
@@ -22,5 +25,27 @@ public class TrackingItemPage1 extends JFrame{
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
+        confirmButton.addActionListener(new ActionListener() { // input the orderID
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        backButton.addActionListener(new ActionListener() {  // back button
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CustomerPage customerPage = new CustomerPage();
+                customerPage.setVisible(true);
+                frame.setVisible(false);
+            }
+        });
+        confirmButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TrackingItemPage2 trackingItemPage2 = new TrackingItemPage2();
+                trackingItemPage2.setVisible(true);
+                frame.setVisible(false);
+            }
+        });
     }
 }

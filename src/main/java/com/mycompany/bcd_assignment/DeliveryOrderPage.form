@@ -16,37 +16,45 @@
           <text value="Delivery Order Page"/>
         </properties>
       </component>
-      <component id="a71e4" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+      <component id="a71e4" class="javax.swing.JTextField" binding="item">
         <constraints>
           <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <text value=""/>
+        </properties>
       </component>
-      <component id="2801" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+      <component id="2801" class="javax.swing.JTextField" binding="name">
         <constraints>
           <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <text value=""/>
+        </properties>
       </component>
-      <component id="e9b9f" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+      <component id="e9b9f" class="javax.swing.JTextField" binding="address">
         <constraints>
           <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <text value=""/>
+        </properties>
       </component>
-      <component id="3a42c" class="javax.swing.JTextField" binding="textField4" default-binding="true">
+      <component id="3a42c" class="javax.swing.JTextField" binding="phoneNumber">
         <constraints>
           <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <text value=""/>
+        </properties>
       </component>
       <component id="a9e21" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
         <constraints>
@@ -88,16 +96,19 @@
               <text value="Confirm Order"/>
             </properties>
           </component>
-          <hspacer id="9145e">
-            <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </hspacer>
           <hspacer id="8f195">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
+          <component id="1d3ca" class="javax.swing.JButton" binding="backButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Back"/>
+            </properties>
+          </component>
         </children>
       </grid>
       <vspacer id="9044f">

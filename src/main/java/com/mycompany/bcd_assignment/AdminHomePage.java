@@ -34,5 +34,13 @@ public class AdminHomePage extends JFrame{
 
             }
         });
+        checkAndConfirmOrderButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                OrderList orderList = new OrderList();
+                orderList.setVisible(true);
+                frame.setVisible(false);
+            }
+        });
     }
 }

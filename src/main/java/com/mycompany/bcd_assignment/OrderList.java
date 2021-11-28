@@ -2,6 +2,8 @@ package com.mycompany.bcd_assignment;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class OrderList extends JFrame{
     private JTable table1;
@@ -23,5 +25,19 @@ public class OrderList extends JFrame{
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
+        confirmOrderButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AdminHomePage adminHomePage = new AdminHomePage();
+                adminHomePage.setVisible(true);
+                frame.setVisible(false);
+            }
+        });
     }
 }

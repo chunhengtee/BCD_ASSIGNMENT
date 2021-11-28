@@ -23,12 +23,27 @@ public class Block implements Serializable{
 	public Block( String previousHash ) {
 		this.header = new Header();
 		this.header.previousHash = previousHash;
-		this.header.timeStamp = new Timestamp( System.currentTimeMillis() ).getTime();	
+		this.header.timeStamp = new Timestamp( System.currentTimeMillis() ).getTime();
 		//for now, hard-coded merkle root
 		this.header.merkleRoot = "6a1f0ff1286e440668aebc80861afecb2161ff2f06f195531e3edb4ec9099c82";
 		byte[] blockBytes = getBytes( this );
 		this.header.currentHash = Hasher.hash( blockBytes, "SHA-256" );
 	}
+
+
+	public Block(int index, String previousHash, long orderID, String username, Transaction tranx, String merkleRootStr) {
+		this.header = new Header();
+		this.header.index = index;
+		this.header.previousHash = previousHash;
+		this.header.orderID = orderID;
+		this.header.timeStamp = new Timestamp(System.currentTimeMillis()).getTime();
+		this.header.username = username;
+		this.header.merkleRoot = merkleRootStr;
+		this.tranx = tranx;
+		byte[] blockBytes = getBytes(this);
+		this.header.currentHash = Hasher.hash(blockBytes, "SHA-256");
+	}
+
 
 	public void setTranx(Transaction tranx) {
 		this.tranx = tranx;
@@ -45,6 +60,8 @@ public class Block implements Serializable{
 		private String previousHash;
 		private long timeStamp;
 		private String merkleRoot;
+		private long orderID;
+		private String username;
 		
 		//getset methods
 		
