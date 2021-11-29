@@ -33,7 +33,7 @@ public class TestBlockchain {
 		blk.setTranx(t1);
 		Blockchain.nextBlock( blk );
 		
-		Blockchain.distribute();
+		//Blockchain.distribute();
 	}
 	
 	/**

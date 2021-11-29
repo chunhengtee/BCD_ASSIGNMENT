@@ -1,6 +1,7 @@
 package com.mycompany.bcd_assignment;
 
 import bcd.*;
+import com.google.gson.GsonBuilder;
 
 import javax.swing.*;
 import java.awt.*;
@@ -87,24 +88,29 @@ public class DeliveryOrderPage extends JFrame {
 
                 String[] test = new String[] { name1,phoneNum,Address, sc, Item, paymentMethod } ;
 
-                String order = name1+"|"+phoneNum+"|"+Address+"|"+sc+"|"+Item+"|"+paymentMethod;
+                String order = name1+"|"+phoneNum+"|"+Address+"|"+sc+"|"+Item+"|"+paymentMethod+"|"+"Pending";
                 MerkleTree mt = MerkleTree.getInstance(Arrays.asList(test));
                 mt.build();
 
                 Transaction transaction1 = new Transaction();
                 transaction1.add(order);
 
-                Block.Header lastBlockHeader= Blockchain.get().getLast().getHeader();
-                Block blk = new Block(lastBlockHeader.getIndex()+1, lastBlockHeader.getCurrentHash(), Item, name1, transaction1, mt.getRoot());
+
+                final  LinkedList<Block> DB 	= 	Blockchain.get();
+                String chain = new GsonBuilder().setPrettyPrinting().create().toJson( DB );
+                System.out.println( chain );
+
+                //Block.Header lastBlockHeader= Blockchain.get().getLast().getHeader();
+                Block blk = new Block(DB.size(), Blockchain.get().getLast().getHeader().getCurrentHash(), Item, name1, transaction1, mt.getRoot());
 
                 blk.setTranx( transaction1 );
 
-                final  LinkedList<Block> DB 	= 	Blockchain.get();
+
                 blk.getHeader().setPreviousHash(DB.getLast().getHeader().getCurrentHash());
 
                 DB.add(blk);
-                Blockchain.nextBlock( blk );
-                System.out.println( blk );
+                //Blockchain.nextBlock( blk );
+                //System.out.println( blk );
 
                 String hashName = Hasher.hash(name1,"SHA-256");
                 //MySignature digitalSign = new MySignature(hashName);
@@ -113,8 +119,11 @@ public class DeliveryOrderPage extends JFrame {
                 //tran.add(tranx1);
 
 
-                Blockchain.distribute();
-                System.out.println(name1);
+
+
+                Blockchain.persist(DB);
+                Blockchain.distribute(DB);
+                //System.out.println(name1);
 
 
             }

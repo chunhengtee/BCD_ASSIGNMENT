@@ -44,8 +44,7 @@ public class CustomerPage extends JFrame{
                 DeliveryOrderPage deliveryOrderPage = new DeliveryOrderPage();
                 deliveryOrderPage.setVisible(true);
 
-                Block genesis = new Block( "0" );
-                Blockchain.nextBlock(genesis);
+
 
                 frame.setVisible(false);
 

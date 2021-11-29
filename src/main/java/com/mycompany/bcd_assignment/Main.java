@@ -11,7 +11,7 @@ public class Main {
 
         //demo();
         //System.out.println("test");
-        new CustomerLogin();
+        //new CustomerLogin();
         //new AdminLogin();
         //new AdminHomePage();
         //new OrderList();

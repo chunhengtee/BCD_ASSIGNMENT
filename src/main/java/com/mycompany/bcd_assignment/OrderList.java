@@ -1,12 +1,13 @@
 package com.mycompany.bcd_assignment;
 
-import bcd.Block;
-import bcd.Blockchain;
+import bcd.*;
+import com.google.gson.GsonBuilder;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 public class OrderList extends JFrame{
@@ -20,11 +21,12 @@ public class OrderList extends JFrame{
     private static LinkedList<Block> db= Blockchain.get();
     Block currentblock;
     static int current=1;
+    final LinkedList<Block> DB = new LinkedList<Block>();
 
     public OrderList(){
         frame = new JFrame("OrderList");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(300,400));
+        frame.setPreferredSize(new Dimension(600,400));
         frame.setResizable(false);
 
         // panel
@@ -43,6 +45,37 @@ public class OrderList extends JFrame{
         confirmOrderButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            currentblock.getTranx().toString();
+                String[] test = new String[] { currentblock.getTranx().toString()} ;
+                System.out.println(test);
+
+                String order = "Admin"+"|"+phoneNum+"|"+Address+"|"+sc+"|"+Item+"|"+paymentMethod+"|"+"Confirm";
+                MerkleTree mt = MerkleTree.getInstance(Arrays.asList(test));
+                mt.build();
+
+                Transaction transaction1 = new Transaction();
+                transaction1.add(order);
+
+
+                final  LinkedList<Block> DB 	= 	Blockchain.get();
+                String chain = new GsonBuilder().setPrettyPrinting().create().toJson( DB );
+                System.out.println( chain );
+
+                //Block.Header lastBlockHeader= Blockchain.get().getLast().getHeader();
+                Block blk = new Block(DB.size(), Blockchain.get().getLast().getHeader().getCurrentHash(), Item, name1, transaction1, mt.getRoot());
+
+                blk.setTranx( transaction1 );
+
+
+                blk.getHeader().setPreviousHash(DB.getLast().getHeader().getCurrentHash());
+
+                DB.add(blk);
+
+                Blockchain.persist(DB);
+                Blockchain.distribute(DB);
+
+
+
 
             }
         });
@@ -89,6 +122,5 @@ public class OrderList extends JFrame{
             }
         });
     }
-    public void odrderTable(){}
 
 }
