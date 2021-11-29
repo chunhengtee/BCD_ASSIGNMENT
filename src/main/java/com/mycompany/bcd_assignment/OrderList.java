@@ -45,11 +45,19 @@ public class OrderList extends JFrame{
         confirmOrderButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            currentblock.getTranx().toString();
-                String[] test = new String[] { currentblock.getTranx().toString()} ;
-                System.out.println(test);
+                String admin = "Admin";
+                String line = currentblock.getTranx().toString();
+                String line1 = line.substring(line.lastIndexOf("[") + 1);
 
-                String order = "Admin"+"|"+phoneNum+"|"+Address+"|"+sc+"|"+Item+"|"+paymentMethod+"|"+"Confirm";
+                String [] arr = line1.split("\\|");
+                String name = arr[0];
+                String paymentMethod = arr[3];
+                String Item = arr[4];
+                String sc = arr[5];
+
+                String[] test = new String[] { admin,name,sc, Item, paymentMethod } ;
+
+                String order = admin+"|"+name+"|"+sc+"|"+Item+"|"+paymentMethod+"|"+"Confirmed";
                 MerkleTree mt = MerkleTree.getInstance(Arrays.asList(test));
                 mt.build();
 
@@ -62,7 +70,7 @@ public class OrderList extends JFrame{
                 System.out.println( chain );
 
                 //Block.Header lastBlockHeader= Blockchain.get().getLast().getHeader();
-                Block blk = new Block(DB.size(), Blockchain.get().getLast().getHeader().getCurrentHash(), Item, name1, transaction1, mt.getRoot());
+                Block blk = new Block(DB.size(), Blockchain.get().getLast().getHeader().getCurrentHash(), Item, admin, transaction1, mt.getRoot());
 
                 blk.setTranx( transaction1 );
 
@@ -70,6 +78,8 @@ public class OrderList extends JFrame{
                 blk.getHeader().setPreviousHash(DB.getLast().getHeader().getCurrentHash());
 
                 DB.add(blk);
+                //Blockchain.nextBlock( blk );
+                //System.out.println( blk );
 
                 Blockchain.persist(DB);
                 Blockchain.distribute(DB);
@@ -93,6 +103,7 @@ public class OrderList extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 current--;
+
                 if(current==0)
                 {
                     JOptionPane.showMessageDialog(previousButton,"No more Record!!!");
@@ -100,7 +111,9 @@ public class OrderList extends JFrame{
                 }
                 else
                 {
+                    currentblock = db.get(current );
                     textArea1.setText(currentblock.getTranx().toString());
+
 
                 }
 

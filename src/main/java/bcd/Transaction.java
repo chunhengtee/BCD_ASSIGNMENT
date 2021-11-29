@@ -15,7 +15,7 @@ import java.util.List;
 
 public class Transaction implements Serializable{
 	
-	private final int SIZE = 5;
+	private final int SIZE = 10;
 	
 	//array or collection
 	//String[] tranxLst;
@@ -32,7 +32,7 @@ public class Transaction implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Transaction [tranxLst=" + tranxLst + "]";
+		return "Transaction|" + tranxLst;
 	}
 
 }	

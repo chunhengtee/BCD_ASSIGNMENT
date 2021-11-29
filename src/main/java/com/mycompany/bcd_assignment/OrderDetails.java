@@ -4,17 +4,17 @@ import javax.swing.*;
 import java.awt.*;
 
 public class OrderDetails extends JFrame {
-    private JTextField textField1;
-    private JTextField textField2;
-    private JButton button1;
+    private JButton verifyButton;
     private JPanel panel1;
+    private JButton button1;
+    private JTextPane textPane1;
 
     private JFrame frame;
 
     public OrderDetails(){
         frame = new JFrame("OrderDetails");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(300,400));
+        frame.setPreferredSize(new Dimension(600,400));
         frame.setResizable(false);
 
         // panel
