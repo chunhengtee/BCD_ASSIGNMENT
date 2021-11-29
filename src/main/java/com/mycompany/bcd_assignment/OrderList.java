@@ -25,6 +25,7 @@ public class OrderList extends JFrame{
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
+
         confirmOrderButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -40,4 +41,6 @@ public class OrderList extends JFrame{
             }
         });
     }
+    public void odrderTable(){}
+
 }

@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 public class DeliveryOrderPage extends JFrame {
     private JTextField item;
@@ -19,7 +20,12 @@ public class DeliveryOrderPage extends JFrame {
     private JButton confirmOrderButton;
     private JPanel panel1;
     private JButton backButton;
+    private JTextField textField1;
     private JFrame frame;
+
+    //static LinkedList<Block> allblock=new LinkedList<Block>();
+    static Blockchain bc= new Blockchain();
+    SymmCrypto crypto=new SymmCrypto();
 
     public DeliveryOrderPage(){
         frame = new JFrame("DeliveryOrderPage");
@@ -34,13 +40,8 @@ public class DeliveryOrderPage extends JFrame {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        String name = this.name.getText();
-        String phoneNum = this.phoneNumber.getText();
-        String address = this.address.getText();
-        String item = this.item.getText();
-        String sc  = this.comboBox1.getSelectedItem().toString();
-        String paymentMethod = this.comboBox2.getSelectedItem().toString();
 
+        final LinkedList<Block> DB = new LinkedList<Block>();
 
         confirmOrderButton.addActionListener(new ActionListener() {  //confirm order button
             @Override
@@ -70,36 +71,49 @@ public class DeliveryOrderPage extends JFrame {
         backButton.addActionListener(new ActionListener() {  // back to customer page button
             @Override
             public void actionPerformed(ActionEvent e) {
+                String name1 = textField1.getText();
+                String phoneNum = phoneNumber.getText();
+                String Address = address.getText();
+                String Item = item.getText();
+                String sc  = comboBox1.getSelectedItem().toString();
+                String paymentMethod = comboBox2.getSelectedItem().toString();
 
                 CustomerPage customerPage = new CustomerPage();
                 customerPage.setVisible(true);
-                frame.setVisible(false);
+                //frame.setVisible(false);
 
-                Block genesis = new Block( "0" );
-                Blockchain.nextBlock(genesis);
 
-                String[] test = new String[] { name, sc, item, paymentMethod } ;
 
-                String order = name+"|"+sc+"|"+item+"|"+paymentMethod;
+
+                String[] test = new String[] { name1,phoneNum,Address, sc, Item, paymentMethod } ;
+
+                String order = name1+"|"+phoneNum+"|"+Address+"|"+sc+"|"+Item+"|"+paymentMethod;
+                MerkleTree mt = MerkleTree.getInstance(Arrays.asList(test));
+                mt.build();
+
                 Transaction transaction1 = new Transaction();
                 transaction1.add(order);
-                Block b1 = new Block( genesis.getHeader().getCurrentHash() );
-                b1.setTranx( transaction1 );
-                System.out.println( b1 );
 
-                String hashName = Hasher.hash(name,"SHA-256");
+                Block.Header lastBlockHeader= Blockchain.get().getLast().getHeader();
+                Block blk = new Block(lastBlockHeader.getIndex()+1, lastBlockHeader.getCurrentHash(), Item, name1, transaction1, mt.getRoot());
+
+                blk.setTranx( transaction1 );
+
+                final  LinkedList<Block> DB 	= 	Blockchain.get();
+                blk.getHeader().setPreviousHash(DB.getLast().getHeader().getCurrentHash());
+
+                DB.add(blk);
+                System.out.println( blk );
+
+                String hashName = Hasher.hash(name1,"SHA-256");
                 //MySignature digitalSign = new MySignature(hashName);
                 //tranx1.setDigital_signature(digitalSign.sign(item.toString()))
                 //Transaction tranx = new Transaction();
                 //tran.add(tranx1);
-                MerkleTree mt = MerkleTree.getInstance(Arrays.asList(test));
-                mt.build();
 
-                Block.Header lastBlockHeader= Blockchain.get().getLast().getHeader();
-                Block blk = new Block(lastBlockHeader.getIndex()+1, lastBlockHeader.getCurrentHash(), "1", name, transaction1, mt.getRoot());
 
-                Blockchain.nextBlock(blk);
                 Blockchain.distribute();
+                System.out.println(name1);
 
 
             }

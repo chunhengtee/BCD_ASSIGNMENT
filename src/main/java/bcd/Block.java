@@ -49,6 +49,10 @@ public class Block implements Serializable{
 		this.tranx = tranx;
 	}
 
+	public Transaction getTranx() {
+		return tranx;
+	}
+
 	public Header getHeader() {
 		return header;
 	}
