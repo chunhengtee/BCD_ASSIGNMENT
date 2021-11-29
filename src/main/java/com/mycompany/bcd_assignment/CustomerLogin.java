@@ -1,5 +1,7 @@
 package com.mycompany.bcd_assignment;
 
+import bcd.Block;
+import bcd.Blockchain;
 import bcd.Hasher;
 
 import javax.swing.*;
@@ -24,6 +26,7 @@ public class CustomerLogin extends JFrame implements ActionListener{
     private JRadioButton adminRadioButton;
 
     private JPanel panel1;
+    private JButton startButton;
     private JFrame frame;
 
     public CustomerLogin(){
@@ -54,6 +57,15 @@ public class CustomerLogin extends JFrame implements ActionListener{
                 }
             });
 
+        });
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Block genesis = new Block( "0" );
+                Blockchain.nextBlock(genesis);
+
+
+            }
         });
 
 
@@ -127,4 +139,7 @@ public class CustomerLogin extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
 
     }
+
+
+
 }

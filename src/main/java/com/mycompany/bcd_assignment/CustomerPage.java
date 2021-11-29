@@ -1,6 +1,7 @@
 package com.mycompany.bcd_assignment;
 
 import bcd.Block;
+import bcd.Blockchain;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,7 +44,8 @@ public class CustomerPage extends JFrame{
                 DeliveryOrderPage deliveryOrderPage = new DeliveryOrderPage();
                 deliveryOrderPage.setVisible(true);
 
-
+                Block genesis = new Block( "0" );
+                Blockchain.nextBlock(genesis);
 
                 frame.setVisible(false);
 

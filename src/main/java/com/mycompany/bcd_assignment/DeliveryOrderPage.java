@@ -80,7 +80,7 @@ public class DeliveryOrderPage extends JFrame {
 
                 CustomerPage customerPage = new CustomerPage();
                 customerPage.setVisible(true);
-                //frame.setVisible(false);
+                frame.setVisible(false);
 
 
 
@@ -103,6 +103,7 @@ public class DeliveryOrderPage extends JFrame {
                 blk.getHeader().setPreviousHash(DB.getLast().getHeader().getCurrentHash());
 
                 DB.add(blk);
+                Blockchain.nextBlock( blk );
                 System.out.println( blk );
 
                 String hashName = Hasher.hash(name1,"SHA-256");
